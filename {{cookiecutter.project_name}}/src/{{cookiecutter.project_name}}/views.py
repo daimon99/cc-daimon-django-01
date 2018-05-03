@@ -1,6 +1,7 @@
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
 from django.shortcuts import render
+# from django.views.decorators.csrf import csrf_exempt
 import json
 from . import models as m
 # Create your views here.
@@ -8,7 +9,7 @@ import logging
 
 log = logging.getLogger(__name__)
 
-
+# @csrf_exempt
 # class AnyJSONEncoder(DjangoJSONEncoder):
 #     def default(self, o):
 #         try:
