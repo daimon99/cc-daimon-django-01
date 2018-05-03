@@ -9,3 +9,6 @@ build:
 
 test: build
 	echo "ok"
+
+run: build
+	python src/manage.py runserver
