@@ -1,0 +1,5 @@
+{
+  "project_name": "yourproject",
+  "domain": "yourproject.example.com", 
+  "port": "9000"
+}

@@ -1,0 +1,14 @@
+# celery
+# coreapi
+django >= 2.0
+# django-debug-toolbar
+django-environ
+django-extensions
+# django-redis
+# djangorestframework
+gevent
+gunicorn
+# psycopg2
+# raven
+# redis
+# whitenoise
