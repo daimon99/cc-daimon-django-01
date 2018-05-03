@@ -6,4 +6,4 @@ clean:
 test: clean
 	cookiecutter . --output-dir /tmp --no-input && \
 	cd /tmp/yourproject && \
-	make test
+	make 
