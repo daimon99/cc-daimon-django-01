@@ -1,4 +1,5 @@
 *.log
+*.pid
 *.pyc
 *.sqlite3
 .env

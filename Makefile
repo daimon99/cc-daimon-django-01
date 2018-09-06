@@ -1,9 +1,21 @@
-all: test
+define PRINT_HELP_PYSCRIPT
+import re, sys
 
-clean:
-	rm -rf /tmp/yourproject/
+for line in sys.stdin:
+        match = re.match(r'^([a-zA-Z_-]+):.*?## (.*)$$', line)
+        if match:
+                target, help = match.groups()
+                print("%-20s %s" % (target, help))
+endef
+export PRINT_HELP_PYSCRIPT
 
-test: clean
-	cookiecutter . --output-dir /tmp --no-input && \
-	cd /tmp/yourproject && \
-	make 
+help:
+	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+
+release: ## 发布
+	git status
+	@echo "commit msg: ";\
+	read msg;\
+	git commit -am "$$msg";\
+	git push
+	
