@@ -1,9 +1,8 @@
 all: test
 
 build:
-	pyvenv env && \
-	. env/bin/activate && \
-	pip install -r requirements.txt && \
+	pipenv install --skip-lock -r requirements.txt && \
+	pipenv shell && \
 	python src/manage.py makemigrations && \
 	python src/manage.py migrate
 
