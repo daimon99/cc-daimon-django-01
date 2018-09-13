@@ -31,7 +31,7 @@ export PRINT_HELP_PYSCRIPT
 BROWSER := python -c "$$BROWSER_PYSCRIPT"
 
 help:
-        @python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
+	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
 all: test
 
