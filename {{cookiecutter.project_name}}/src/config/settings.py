@@ -29,7 +29,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = '7+ad^4(ze45dneg3s91c%=!p)!8&71#@)h-35$)f#6)qeo3)n8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('{{cookiecutter.project_name|upper}}_DEBUG', False)
+DEBUG = env.bool('DEBUG', False)
 
 ALLOWED_HOSTS = ['*']
 
