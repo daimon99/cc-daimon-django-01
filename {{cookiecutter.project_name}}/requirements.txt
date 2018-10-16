@@ -1,11 +1,14 @@
 # celery
-# coreapi
+coreapi
 django >= 2.0
+django-cors-headers
 # django-debug-toolbar
 django-environ
 django-extensions
 # django-redis
-# djangorestframework
+djangorestframework
+djangorestframework-jwt
+django-filter
 gevent
 gunicorn
 # psycopg2
