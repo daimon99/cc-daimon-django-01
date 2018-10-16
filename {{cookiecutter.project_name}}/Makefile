@@ -8,7 +8,7 @@ try:
 except:
         from urllib.request import pathname2url
 
-if platform.system() != 'Linux': 
+if platform.system() != 'Linux':
 	is_http = re.match('http://.*', sys.argv[1])
 	if is_http:
 		webbrowser.open(sys.argv[1])
@@ -35,7 +35,7 @@ help:
 
 all: test
 
-build: ## 构建
+install: ## 安装，构建环境
 	pipenv install --skip-lock -r requirements.txt && \
 	pipenv run python src/manage.py makemigrations && \
 	pipenv run python src/manage.py migrate
