@@ -10,8 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
+import datetime
 import environ
 import os
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -37,6 +39,13 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     '{{cookiecutter.project_name}}.apps.{{cookiecutter.project_name|title}}Config',
+
+    'rest_framework',
+    'rest_framework.authtoken',
+    'django_filters',
+
+    'corsheaders',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -133,6 +142,9 @@ LOGGING = {
         'simple': {
             'format': ' %(asctime)s | %(levelname)s | %(name)s:%(lineno)s | %(message)s'
         },
+        'sql': {
+            'format': ' %(asctime)s | %(levelname)s | %(message)s'
+        }
     },
     'filters': {
         'require_debug_true': {
@@ -150,7 +162,7 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.handlers.WatchedFileHandler',
             'filename': os.path.join(LOG_DIR, 'db.log'),
-            'formatter': 'simple',
+            'formatter': 'sql',
         },
         'app_file': {
             'level': 'DEBUG',
@@ -171,7 +183,7 @@ LOGGING = {
         },
         'django.db': {
             'handlers': ['db_file', ],
-            'level': 'WARNING',
+            'level': 'DEBUG',
             'propagate': False
         },
         '{{cookiecutter.project_name}}': {
@@ -180,4 +192,25 @@ LOGGING = {
             'propagate': False
         },
     }
+}
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',)
+}
+
+JWT_AUTH = {
+    # 'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.auth.jwt_response_payload_handler',
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(seconds=60 * 60 * 24)
 }

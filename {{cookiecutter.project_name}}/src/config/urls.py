@@ -17,6 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/admin/', permanent=False)),
+
     path('admin/', admin.site.urls),
-    path('{{cookiecutter.project_name}}/', include('{{cookiecutter.project_name}}.urls'))
+    path('{{cookiecutter.project_name}}/', include('{{cookiecutter.project_name}}.urls')),
+
+    path('api/v1/', include('{{cookiecutter.project_name}}.urls_api')),
+    path('api/auth/', include('rest_framework.urls')),
+    path('api/docs/', include_docs_urls(title='{{cookiecutter.project_name}} API', public=False)),
+    path('api/auth-jwt/', obtain_jwt_token),  # POST email=email&password=password
+    path('api/auth-jwt-verify/', verify_jwt_token),
+    path('api/auth-jwt-refresh/', refresh_jwt_token),
+
 ]
